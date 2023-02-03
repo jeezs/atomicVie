@@ -28,8 +28,9 @@ box(vie_styles[:inspector_style])
 # box(vie_styles[:navigation_style])
 
 # logo
+# grab(:action).image({ path: "./medias/images/logos/vie.svg", left: :auto, right: 3, top: -6, size: 60 })
 logo_color = 'rgba(99, 255, 99, 0.3)'
-grab(:action).box({ id: :logo_support, width: 33, height: 33, left: :auto, top: 7, right: 15, attached: :invisible_color })
+grab(:action).box({ id: :logo_support, width: 33, height: 33, left: :auto, top: 7, right: 15, color: { alpha: 0 } })
 svg_fetch(:vie, logo_color, :logo_support)
 
 # project title
@@ -242,7 +243,7 @@ end
 def action_edition
   inspector = grab(:inspector)
   clear_zone(inspector)
-  svg_color = 'rgba(180, 120, 50, 1)'
+  svg_color = 'rgba(99, 99, 99, 1)'
   margin = vie_styles[:margin]
   support_style = vie_styles[:support_style]
   icon_spacing = vie_styles[:support_style][:height] + margin * 2
@@ -270,9 +271,13 @@ def insert_module(module_id)
       grab(child_found).delete(true) if grab(child_found)
     end
     tool_found = tool_list[module_id][:icon]
+    id_found = tool_list[module_id][:id]
     tool_color= :orange
-    module_found.box({id: "#{module_found.id.value}_svg_support", width: module_found.width.value/2, height: module_found.height.value/2, center: true, attached: :invisible_color})
-    svg_fetch(tool_found, tool_color, "#{module_found.id.value}_svg_support")
+    # path=  "./medias/images/icons/#{tool_found}.svg"
+    # module_found.image({path: path, width: 22, height:22, center: true})
+    # grab(:action).box({id: :logo_support, width: 33, height: 33, left: :auto, top: 7, right: 15, color: {alpha: 0}})
+    module_found.box({id: id_found, width: module_found.width.value/2, height: module_found.height.value/2, center: true, color: :white})
+    svg_fetch(tool_found, tool_color, id_found)
   end
 
 end

@@ -12,11 +12,15 @@
 #   end
 #
 # end
+class Atome
+
+  def <<(val)
+
+  end
+end
 
 
-
-
-def svg_fetch(svg_name, width = 33, height = 33, svg_color = :lightgray, target)
+def svg_fetch(svg_name, svg_color = :lightgray, target)
 
   `
  fetch("./medias/images/icons/" +#{svg_name} +".svg")
@@ -26,8 +30,8 @@ def svg_fetch(svg_name, width = 33, height = 33, svg_color = :lightgray, target)
         let parser = new DOMParser();
         let svgDoc = parser.parseFromString(svgText, "image/svg+xml");
         let importedSVG = svgDoc.getElementsByTagName("svg")[0];
-        importedSVG.style.width = #{width} + "px";
-        importedSVG.style.height = #{height} + "px";
+        importedSVG.style.width =  "100%";
+        importedSVG.style.height =  "100%";
         let elements = importedSVG.getElementsByTagName("path");
         Array.from(elements).forEach(el => {
             el.setAttribute("fill", #{svg_color});
